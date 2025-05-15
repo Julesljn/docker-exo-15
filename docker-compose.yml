@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+    depends_on:
+      - minecraft
+    networks:
+      - minecraft-network
+
+  minecraft:
+    image: marctv/minecraft-papermc-server:latest
+    ports:
+      - "25565:25565"  # Port Minecraft
+      - "25575:25575"  # Port RCON
+    environment:
+      - EULA=TRUE
+      - VERSION=1.20.6
+      - MEMORY=2G
+      - ENABLE_RCON=true
+      - RCON_PASSWORD=minecraft_password
+      - RCON_PORT=25575
+      - SERVER_PROPERTIES=enable-rcon=true,rcon.password=minecraft_password,rcon.port=25575
+    volumes:
+      - minecraft-data:/data
+    networks:
+      - minecraft-network
+
+networks:
+  minecraft-network:
+    driver: bridge
+
+volumes:
+  minecraft-data: 

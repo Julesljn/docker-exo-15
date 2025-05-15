@@ -1,0 +1,63 @@
+{
+	"name": "api-minecraftrcon-nodejs",
+	"version": "1.0.0",
+	"description": "minecraft rcon node.js api",
+	"main": "index.js",
+	"scripts": {
+		"dev": "NODE_ENV=development node --import=tsx --env-file=.env --watch --watch-preserve-output --watch-path=./src  index.ts",
+		"build": "tsc --build --clean && tsc --build --verbose && tsc-alias",
+		"preview": "node --unhandled-rejections=strict ./build/index.js",
+		"format": "prettier --write .",
+		"check": "prettier --check . && tsc",
+		"lint": "prettier --check . && eslint . --ignore-path .gitignore . --ext .ts",
+		"test": "node --import=tsx --env-file=.env --test --experimental-test-coverage tests/*.test.ts"
+	},
+	"engines": {
+		"node": ">=22.13.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lloyet/api-minecraftrcon-nodejs.git"
+	},
+	"keywords": [
+		"minecraft",
+		"rcon",
+		"api",
+		"node.js",
+		"ws",
+		"websocket"
+	],
+	"author": "lloyet",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/lloyet/api-minecraftrcon-nodejs/issues"
+	},
+	"homepage": "https://github.com/lloyet/api-minecraftrcon-nodejs#readme",
+	"devDependencies": {
+		"@types/compression": "^1.7.5",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^5.0.0",
+		"@types/node": "^22.10.7",
+		"@types/ws": "^8.5.13",
+		"@typescript-eslint/eslint-plugin": "^8.21.0",
+		"@typescript-eslint/parser": "^8.21.0",
+		"dotenv": "^16.4.7",
+		"eslint": "^9.18.0",
+		"eslint-config-prettier": "^10.0.1",
+		"prettier": "^3.4.2",
+		"tsc-alias": "^1.8.10",
+		"tsconfig-paths": "^4.2.0",
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.3",
+		"typescript-eslint": "^8.21.0"
+	},
+	"dependencies": {
+		"compression": "^1.7.5",
+		"cors": "^2.8.5",
+		"express": "^4.21.2",
+		"helmet": "^8.0.0",
+		"pino-http": "^10.4.0",
+		"rcon-client": "^4.2.5",
+		"ws": "^8.18.0"
+	}
+}
